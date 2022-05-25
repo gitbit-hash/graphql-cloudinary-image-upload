@@ -1,0 +1,30 @@
+{
+	"name": "typscript-graphql-image-upload",
+	"version": "1.0.0",
+	"description": "A typscript and graphql image upload",
+	"main": "server.js",
+	"scripts": {
+		"serve": "node index",
+		"start": "nodemon index"
+	},
+	"keywords": [
+		"Express",
+		"Graphql",
+		"node",
+		"javascript",
+		"Cloudinary"
+	],
+	"dependencies": {
+		"apollo-server": "^2.19.0",
+		"apollo-server-express": "^2.19.1",
+		"cloudinary": "^1.23.0",
+		"cors": "^2.8.5",
+		"graphql": "^15.4.0",
+		"graphql-upload": "^11.0.0"
+	},
+	"devDependencies": {
+		"nodemon": "^2.0.6"
+	},
+	"author": "Muhammad Salah",
+	"license": "MIT"
+}
