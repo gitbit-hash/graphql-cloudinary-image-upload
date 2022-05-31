@@ -1,10 +1,10 @@
-const { GraphQLUpload } = require('graphql-upload');
+import GraphQLUpload from 'graphql-upload/GraphQLUpload.js';
 
-const { ValidationError } = require('apollo-server');
+import { ValidationError } from 'apollo-server';
 
-const processUpload = require('../../utils/proccess-upload');
+import processUpload from '../utils/proccess-upload.js';
 
-module.exports = {
+export default {
 	Upload: GraphQLUpload,
 
 	Mutation: {

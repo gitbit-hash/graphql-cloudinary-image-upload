@@ -1,25 +1,31 @@
-const { ApolloServer } = require('apollo-server-express');
-const express = require('express');
-const cors = require('cors');
-const typeDefs = require('./graghql/typeDefs');
-const resolvers = require('./graghql/resolvers');
-const { graphqlUploadExpress } = require('graphql-upload');
+import { ApolloServer } from 'apollo-server-express';
+import express from 'express';
+import cors from 'cors';
+import typeDefs from './graghql/typeDefs.js';
+import resolvers from './graghql/resolvers.js';
+import graphqlUploadExpress from 'graphql-upload/graphqlUploadExpress.js';
 
-const app = express();
+async function startServer() {
+	const server = new ApolloServer({
+		typeDefs,
+		resolvers,
+		uploads: false,
+	});
 
-app.use(cors());
-app.use(graphqlUploadExpress());
+	await server.start();
 
-const server = new ApolloServer({
-	typeDefs,
-	resolvers,
-	uploads: false,
-});
+	const app = express();
 
-server.applyMiddleware({ app });
+	app.use(cors());
 
-const PORT = process.env.PORT || 5000;
+	// This middleware should be added before calling `applyMiddleware`.
+	app.use(graphqlUploadExpress());
 
-app.listen({ port: PORT }, () =>
-	console.log(`Server ready at http://localhost:5000${server.graphqlPath}`)
-);
+	server.applyMiddleware({ app });
+
+	await new Promise((r) => app.listen({ port: 5000 }, r));
+
+	console.log(`Server ready at http://localhost:5000${server.graphqlPath}`);
+}
+
+startServer();

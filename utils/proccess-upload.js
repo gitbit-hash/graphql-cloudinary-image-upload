@@ -1,15 +1,15 @@
-const {
+import cloudinary from 'cloudinary';
+import {
 	CLOUDINARY_NAME,
 	CLOUDINARY_API_KEY,
 	CLOUDINARY_API_SECRET,
-} = require('../config');
+} from '../config.js';
 
-module.exports = async (upload) => {
+export default async (upload) => {
 	const { createReadStream } = await upload;
 
 	const stream = createReadStream();
 
-	const cloudinary = require('cloudinary');
 	cloudinary.config({
 		cloud_name: CLOUDINARY_NAME,
 		api_key: CLOUDINARY_API_KEY,

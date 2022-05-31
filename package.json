@@ -3,9 +3,10 @@
 	"version": "1.0.0",
 	"description": "A typscript and graphql image upload",
 	"main": "server.js",
+	"type": "module",
 	"scripts": {
-		"serve": "node index",
-		"start": "nodemon index"
+		"serve": "node index.js",
+		"start": "nodemon index.js"
 	},
 	"keywords": [
 		"Express",
@@ -15,15 +16,15 @@
 		"Cloudinary"
 	],
 	"dependencies": {
-		"apollo-server": "^2.19.0",
-		"apollo-server-express": "^2.19.1",
-		"cloudinary": "^1.23.0",
+		"apollo-server": "^3.8.1",
+		"apollo-server-express": "^3.8.1",
+		"cloudinary": "^1.30.0",
 		"cors": "^2.8.5",
-		"graphql": "^15.4.0",
-		"graphql-upload": "^11.0.0"
+		"graphql": "^16.5.0",
+		"graphql-upload": "^15.0.1"
 	},
 	"devDependencies": {
-		"nodemon": "^2.0.6"
+		"nodemon": "^2.0.16"
 	},
 	"author": "Muhammad Salah",
 	"license": "MIT"
