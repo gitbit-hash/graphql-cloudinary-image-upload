@@ -12,8 +12,8 @@ function ModalComponent({ setImageUrl }) {
 	const [selectedFile, setSelectedFile] = useState(null);
 	const [croppedImage, setCroppedImage] = useState(null);
 
-	const [uploadImage, { loading, data }] = useMutation(UPLOAD_IMAGE, {
-		onCompleted() {
+	const [uploadImage, { loading }] = useMutation(UPLOAD_IMAGE, {
+		onCompleted(data) {
 			setSelectedFile(null);
 			setCroppedImage(null);
 			setImageUrl(data.uploadImage.url);

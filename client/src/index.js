@@ -1,6 +1,5 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
-
+import { createRoot } from 'react-dom/client';
 import { createUploadLink } from 'apollo-upload-client';
 
 import { ApolloClient, InMemoryCache, ApolloProvider } from '@apollo/client';
@@ -18,9 +17,17 @@ const client = new ApolloClient({
 	cache,
 });
 
-ReactDOM.render(
+const root = createRoot(document.getElementById('root'));
+
+root.render(
 	<ApolloProvider client={client}>
 		<App />
-	</ApolloProvider>,
-	document.getElementById('root')
+	</ApolloProvider>
 );
+
+// ReactDOM.render(
+// 	<ApolloProvider client={client}>
+// 		<App />
+// 	</ApolloProvider>,
+// 	createRoot(document.getElementById('root'))
+// );
