@@ -1,4 +1,6 @@
 import cloudinary from 'cloudinary';
+import sharp from 'sharp';
+
 import {
 	CLOUDINARY_NAME,
 	CLOUDINARY_API_KEY,
@@ -16,22 +18,30 @@ export default async (upload) => {
 		api_secret: CLOUDINARY_API_SECRET,
 	});
 
-	let resultUrl = '';
+	let imageUrl = '';
+
 	const cloudinaryUpload = async ({ stream }) => {
 		try {
 			await new Promise((resolve, reject) => {
 				const streamLoad = cloudinary.v2.uploader.upload_stream(
 					(error, result) => {
 						if (result) {
-							resultUrl = result.secure_url;
-							resolve(resultUrl);
+							imageUrl = result.secure_url;
+							resolve(imageUrl);
 						} else {
 							reject(error);
 						}
 					}
 				);
 
-				stream.pipe(streamLoad);
+				const transformer = sharp()
+					.resize({
+						width: 400,
+						height: 400,
+					})
+					.png();
+
+				stream.pipe(transformer).pipe(streamLoad);
 			});
 		} catch (err) {
 			throw new Error(`Failed to upload profile picture ! Err:${err.message}`);
@@ -39,5 +49,6 @@ export default async (upload) => {
 	};
 
 	await cloudinaryUpload({ stream });
-	return resultUrl;
+
+	return imageUrl;
 };

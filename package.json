@@ -21,7 +21,8 @@
 		"cloudinary": "^1.30.0",
 		"cors": "^2.8.5",
 		"graphql": "^16.5.0",
-		"graphql-upload": "^15.0.1"
+		"graphql-upload": "^15.0.1",
+		"sharp": "^0.30.6"
 	},
 	"devDependencies": {
 		"nodemon": "^2.0.16"
